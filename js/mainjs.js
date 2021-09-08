@@ -14,7 +14,7 @@ Vue.component("site-page", {
 
             <nav class="sitenav" :class="{'active': active}">
                 <ul class="sitenav__list">
-                    <li class="sitenav__item" v-for="planet in planetMenu" @click="selectedPlanet = planet">
+                    <li class="sitenav__item" v-for="planet in planetMenu" @click="[selectedPlanet = planet,active = !active]" >
                     <div class="sitenav__border"
                            :style="[selectedPlanet === planet ? {'background-color': planets[selectedPlanet].bgColor} : {'background-color': transparent}]">
                     </div>
@@ -33,19 +33,21 @@ Vue.component("site-page", {
                 <img :src="image" :alt="imageAlt" width="450" heigth="450">
             </div>
             <div class="planet-info">
-                <h2 class="planet-info__title">{{ planets[selectedPlanet].name }}</h2>
-                <p class="planet-info__text">{{ planets[selectedPlanet][selectedBtn].text }}</p>
-                <span class="wiki">Source:
-                    <a class="wiki__link" :href="link">Wikipedia</a>
-                </span>
+                <div>
+                  <h2 class="planet-info__title">{{ planets[selectedPlanet].name }}</h2>
+                  <p class="planet-info__text">{{ planets[selectedPlanet][selectedBtn].text }}</p>
+                   <span class="wiki">Source:
+                      <a class="wiki__link" :href="link">Wikipedia</a>
+                  </span>
+                </div>
                 <ul class="tab-list">
                     <li class="tab__item" v-for="(tab,index) in infoPlanet"
-                    @click="selectedBtn = tab"
-                    :class="{'tab__item--active': selectedBtn === tab}"
-                    :style="[selectedBtn === tab ? {'background-color': planets[selectedPlanet].bgColor} : {'background-color': transparent}]">
-                        <a class="tab__link" href="#">
-                        <span class="tab__link--index">0{{ index+1 }}</span>
-                          {{ tab }}
+                        @click="selectedBtn = tab"
+                        :class="{'tab__item--active': selectedBtn === tab}"
+                        :style="[selectedBtn === tab ? {'background-color': planets[selectedPlanet].bgColor} : {'background-color': transparent}]">
+                         <a class="tab__link" href="#">
+                           <span class="tab__link--index">0{{ index+1 }}</span>
+                            {{ tab }}
                         </a>
                     </li>
                 </ul>
@@ -64,7 +66,7 @@ Vue.component("site-page", {
   data() {
     return {
       infoItem: ["rotation time", "revolution time", "radius", "average temp"],
-      infoPlanet: ["overview", "internal structure", "surface geology"],
+      infoPlanet: ["overview", "structure", "surface"],
       planetMenu: ["Mercury", "Venus", "Earth", "Mars", "Jupiter", "Saturn", "Uranus", "Neptune"],
       selectedPlanet: "Mercury",
       selectedBtn: "overview",
@@ -79,12 +81,12 @@ Vue.component("site-page", {
             img: "../img/mercuriy.png",
             imgAlt: "mercuriy planet image"
           },
-          "internal structure": {
+          "structure": {
             text: "Mercury appears to have a solid silicate crust and mantle overlying a solid, iron sulfide outer core layer, a deeper liquid core layer, and a solid inner core. The planet's density is the second highest in the Solar System at 5.427 g/cm3 , only slightly less than Earth's density.",
             img: "../img/mercuriy-structure.png",
-            imgAlt: "mercuriy internal image"
+            imgAlt: "mercuriy image"
           },
-          "surface geology": {
+          "surface": {
             text: "Mercury's surface is similar in appearance to that of the Moon, showing extensive mare-like plains and heavy cratering, indicating that it has been geologically inactive for billions of years. It is more heterogeneous than either Mars's or the Moon’s.",
             img: "../img/mercuriy-geo.png",
             imgAlt: "mercuriy surface image"
@@ -105,12 +107,12 @@ Vue.component("site-page", {
             imgAlt: "venus planet image",
             img: "../img/venus.png"
           },
-          "internal structure": {
-            text: "The similarity in size and density between Venus and Earth suggests they share a similar internal structure: a core, mantle, and crust. Like that of Earth, Venusian core is most likely at least partially liquid because the two planets have been cooling at about the same rate.",
+          "structure": {
+            text: "The similarity in size and density between Venus and Earth suggests they share a similar structure: a core, mantle, and crust. Like that of Earth, Venusian core is most likely at least partially liquid because the two planets have been cooling at about the same rate.",
             imgAlt: "venus planet image",
             img: "../img/venus-structure.png"
           },
-          "surface geology": {
+          "surface": {
             text: "Much of the Venusian surface appears to have been shaped by volcanic activity. Venus has several times as many volcanoes as Earth, and it has 167 large volcanoes that are over 100 km (60 mi) across. The only volcanic complex of this size on Earth is the Big Island of Hawaii.",
             imgAlt: "venus planet image",
             img: "../img/venus-geo.png"
@@ -131,12 +133,12 @@ Vue.component("site-page", {
             imgAlt: "earth planet image",
             img: "../img/earth.png"
           },
-          "internal structure": {
+          "structure": {
             text: "The total surface area of Earth is about 510 million km2. The continental crust consists of lower density material such as the igneous rocks granite and andesite. Less common is basalt, a denser volcanic rock that is the primary constituent of the ocean floors.",
             imgAlt: "earth planet image",
             img: "../img/earth-structure.png"
           },
-          "surface geology": {
+          "surface": {
             text: "Third planet from the Sun and the only known planet to harbor life. About 29.2% of Earth's surface is land with remaining 70.8% is covered with water. Earth's distance from the Sun, physical properties and geological history have allowed life to evolve and thrive.",
             imgAlt: "earth planet image",
             img: "../img/earth-geo.png"
@@ -157,12 +159,12 @@ Vue.component("site-page", {
             imgAlt: "mars planet image",
             img: "../img/mars.png"
           },
-          "internal structure": {
+          "structure": {
             text: "Like Earth, Mars has differentiated into a dense metallic core overlaid by less dense materials. Scientists initially determined that the core is at least partially liquid. Current models of its interior imply a core consisting primarily of iron and nickel with about 16–17% sulfur.",
             imgAlt: "mars planet image",
             img: "../img/mars-structure.png"
           },
-          "surface geology": {
+          "surface": {
             text: "Mars is a terrestrial planet whose surface consists of minerals containing silicon and oxygen, metals, and other elements that typically make up rock. The surface is primarily composed of tholeiitic basalt, although parts are more silica-rich than typical basalt.",
             imgAlt: "mars planet image",
             img: "../img/mars-geo.png"
@@ -183,12 +185,12 @@ Vue.component("site-page", {
             imgAlt: "jupiter planet image",
             img: "../img/jupiter.png"
           },
-          "internal structure": {
+          "structure": {
             text: "When the Juno arrived in 2016, it found that Jupiter has a very diffuse core that mixes into its mantle. A possible cause is an impact from a planet of about ten Earth masses a few million years after Jupiter's formation, which would have disrupted an originally solid Jovian core.",
             imgAlt: "jupiter planet image",
             img: "../img/jupiter-structure.png"
           },
-          "surface geology": {
+          "surface": {
             text: "The best known feature of Jupiter is the Great Red Spot, a persistent anticyclonic storm located 22° south of the equator. It is known to have existed since at least 1831, and possibly since 1665.",
             imgAlt: "jupiter planet image",
             img: "../img/jupiter-geo.png"
@@ -209,12 +211,12 @@ Vue.component("site-page", {
             imgAlt: "saturn planet image",
             img: "../img/saturn.png"
           },
-          "internal structure": {
+          "structure": {
             text: "Despite consisting mostly of hydrogen and helium, most of Saturn's mass is not in the gas phase, because hydrogen becomes a non-ideal liquid when the density is above 0.01 g/cm3, which is reached at a radius containing 99.9% of Saturn's mass.",
             imgAlt: "saturn planet image",
             img: "../img/saturn-structure.png"
           },
-          "surface geology": {
+          "surface": {
             text: "The outer atmosphere of Saturn contains 96.3% molecular hydrogen and 3.25% helium by volume. The planet's most famous feature is its prominent ring system, which is composed mostly of ice particles with a smaller amount of rocky debris and dust. ",
             imgAlt: "saturn planet image",
             img: "../img/saturn-geo.png"
@@ -235,12 +237,12 @@ Vue.component("site-page", {
             imgAlt: "uranus planet image",
             img: "../img/uranus.png"
           },
-          "internal structure": {
+          "structure": {
             text: "The standard model of Uranus's structure is that it consists of three layers: a rocky (silicate/iron–nickel) core in the centre, an icy mantle in the middle and an outer gaseous hydrogen/helium envelope. The core is relatively small, with a mass of only 0.55 Earth masses.",
             imgAlt: "uranus planet image",
             img: "../img/uranus-structure.png"
           },
-          "surface geology": {
+          "surface": {
             text: "The composition of Uranus's atmosphere is different from its bulk, consisting mainly of molecular hydrogen and helium. The helium molar fraction, i.e. the number of helium atoms per molecule of gas, is 0.15±0.03 in the upper troposphere.",
             imgAlt: "uranus planet image",
             img: "../img/uranus-geo.png"
@@ -261,12 +263,12 @@ Vue.component("site-page", {
             imgAlt: "neptune planet image",
             img: "../img/neptune.png"
           },
-          "internal structure": {
-            text: "Neptune's internal structure resembles that of Uranus. Its atmosphere forms about 5% to 10% of its mass and extends perhaps 10% to 20% of the way towards the core. Increasing concentrations of methane, ammonia and water are found in the lower regions.",
+          "structure": {
+            text: "Neptune's structure resembles that of Uranus. Its atmosphere forms about 5% to 10% of its mass and extends perhaps 10% to 20% of the way towards the core. Increasing concentrations of methane, ammonia and water are found in the lower regions.",
             imgAlt: "neptune planet image",
             img: "../img/neptune-structure.png"
           },
-          "surface geology": {
+          "surface": {
             text: "Neptune's atmosphere is 80% hydrogen and 19% helium. A trace amount of methane is also present. Prominent absorption bands of methane exist at wavelengths above 600 nm, in the red and infrared portion of the spectrum.",
             imgAlt: "neptune planet image",
             img: "../img/neptune-geo.png"

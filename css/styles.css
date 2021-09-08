@@ -235,10 +235,11 @@ body {
   color: rgb(255, 255, 255, 0.5);
   margin-bottom: 4px;
 }
-.site-main {
-  display: none;
+@media only screen and (max-width: 1150px) {
+  .image-wrapper {
+    margin-right: auto;
+  }
 }
-
 @media only screen and (max-width: 865px) {
   .site-header__container {
     flex-direction: column;
@@ -249,10 +250,65 @@ body {
   .sitenav__border {
     top: 50px;
   }
+  .site-main__container {
+    flex-direction: column;
+  }
+  .image-wrapper {
+    margin-right: 0;
+    margin-bottom: 130px;
+  }
+  .planet-info {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 30px;
+  }
+  .planet-info__text {
+    width: 350px;
+  }
 }
 @media only screen and (max-width: 710px) {
   .sitenav__item:not(:last-child) {
     margin-right: 15px;
+  }
+  .planet-info__text {
+    width: 300px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  .info-list {
+    flex-direction: column;
+  }
+  .info-list__item {
+    width: 100%;
+  }
+  .info-list__item:not(:last-child) {
+    margin-right: 0;
+  }
+  .planet-info {
+    text-align: center;
+    flex-direction: column;
+  }
+  .tab-list {
+    position: absolute;
+    top: 121px;
+    left: 0;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid rgb(255, 255, 255, 0.2);
+  }
+  .tab__item {
+    border: none;
+    margin-bottom: 0;
+    white-space: nowrap;
+  }
+  .tab__link--index {
+    display: none;
+  }
+  .tab__item--active {
+    border-bottom: 1px solid transparent;
   }
 }
 @media only screen and (max-width: 575px) {
@@ -270,13 +326,27 @@ body {
   .logo {
     margin-bottom: 0;
   }
+  .image-wrapper {
+    width: 350px;
+    height: 350px;
+  }
+  .image-wrapper img {
+    width: 100%;
+    height: auto;
+  }
   .sitenav {
     position: absolute;
     padding-left: 20px;
-    top: 280%;
+    top: 62px;
     left: 0;
     width: 100%;
     transform: translateX(-100%);
+    z-index: 1000;
+    height: 100vh;
+    background-color: #070724;
+  }
+  .tab-list {
+    top: 55px;
   }
   .sitenav__list {
     flex-direction: column;
@@ -310,6 +380,15 @@ body {
     border-radius: 50%;
     position: static;
     margin-right: 20px;
+  }
+}
+@media only screen and (max-width: 450px) {
+  .image-wrapper {
+    width: 300px;
+    height: 300px;
+  }
+  .tab__item {
+    padding: 10px 10px;
   }
 }
 .active {
