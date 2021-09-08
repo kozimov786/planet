@@ -318,6 +318,20 @@ body {
     top: 10px;
     right: 20px;
   }
+  .planet-info__title {
+    font-weight: normal;
+    font-size: 40px;
+    line-height: 52px;
+  }
+  .planet-info__text {
+    font-size: 11px;
+  }
+  .info-list__item {
+    font-size: 20px;
+    line-height: 26px;
+    flex-direction: row-reverse;
+    justify-content: space-between;
+  }
   .site-header__container {
     flex-direction: row;
     justify-content: space-between;
