@@ -7,12 +7,17 @@ Vue.component("site-page", {
             <div class="logo">
                 <img src="img/logo.svg" alt="logo" width="109" height="36">
             </div>
-            <nav class="sitenav">
+
+               <div class="menu-btn" @click="active = !active">
+                 <img src="../img/nav.svg">
+               </div>
+
+            <nav class="sitenav" :class="{'active': active}">
                 <ul class="sitenav__list">
                     <li class="sitenav__item" v-for="planet in planetMenu" @click="selectedPlanet = planet">
                     <div class="sitenav__border"
-                    :style="[selectedPlanet === planet ? {'background-color': planets[selectedPlanet].bgColor} : {'background-color': transparent}]"
-                    ></div>
+                           :style="[selectedPlanet === planet ? {'background-color': planets[selectedPlanet].bgColor} : {'background-color': transparent}]">
+                    </div>
                         <a class="sitenav__link" href="#" :class="{'sitenav__active':selectedPlanet === planet}">{{ planet }}</a>
                     </li>
                 </ul>
@@ -63,6 +68,7 @@ Vue.component("site-page", {
       planetMenu: ["Mercury", "Venus", "Earth", "Mars", "Jupiter", "Saturn", "Uranus", "Neptune"],
       selectedPlanet: "Mercury",
       selectedBtn: "overview",
+      active: false,
       planets: {
         "Mercury": {
           name: "Mercury",
