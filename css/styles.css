@@ -60,11 +60,12 @@ body {
   font-family: var(--Spartan);
   margin: 0;
   padding: 0;
-  background: #070724 url("../img/bg-image.png") no-repeat center center;
+  background: #070724 url(../img/bg-image.png) no-repeat center center;
   background-size: cover;
   font-size: 14px;
   line-height: 25px;
   color: #fff;
+  overflow-x: hidden !important;
 }
 .container {
   width: 100%;
@@ -149,6 +150,7 @@ body {
 }
 .image-wrapper img {
   display: block;
+  animation: crescendo 1.5s alternate infinite ease-in;
 }
 .planet-info__title {
   margin-top: 0;
@@ -158,6 +160,11 @@ body {
   font-family: var(--Antonio);
   margin-bottom: 23px;
   text-transform: uppercase;
+  animation: type 3s steps(23) infinite;
+  overflow: hidden;
+  white-space: nowrap;
+  border-right: 4px solid black;
+  width: 290px;
 }
 .planet-info__text {
   margin-top: 0;
@@ -235,6 +242,16 @@ body {
   color: rgb(255, 255, 255, 0.5);
   margin-bottom: 4px;
 }
+.star-img {
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: -99;
+  animation-name: spin;
+  animation-duration: 4000ms;
+  animation-iteration-count: infinite;
+  animation-timing-function: linear;
+}
 @media only screen and (max-width: 1150px) {
   .image-wrapper {
     margin-right: auto;
@@ -281,6 +298,10 @@ body {
   }
   .info-list__item {
     width: 100%;
+  }
+  .planet-info__title {
+    margin-left: auto;
+    margin-right: auto;
   }
   .info-list__item:not(:last-child) {
     margin-right: 0;
@@ -408,4 +429,20 @@ body {
 .active {
   transform: translateX(0);
   transition: 0.4s ease-in;
+}
+@keyframes crescendo {
+  0% {
+    transform: scale(1);
+  }
+  100% {
+    transform: scale(1.1);
+  }
+}
+@keyframes type {
+  0% {
+    width: 0px;
+  }
+  100% {
+    width: 290px;
+  }
 }

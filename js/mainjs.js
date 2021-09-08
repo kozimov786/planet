@@ -28,6 +28,7 @@ Vue.component("site-page", {
     <main class="site-main">
 
         <div class="container">
+
         <div class="site-main__container">
             <div class="image-wrapper">
                 <img :src="image" :alt="imageAlt" width="450" heigth="450">
